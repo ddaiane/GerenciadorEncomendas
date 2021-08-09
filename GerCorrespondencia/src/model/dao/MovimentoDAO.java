@@ -12,12 +12,12 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
 
     @Override
     public void inserir(Movimento obj) {
-
+        bancoDeDados.getMovimentos().add(obj);
     }
 
     @Override
     public void excluir(Movimento obj) {
-
+        bancoDeDados.getMovimentos().remove(obj);
     }
 
     @Override
