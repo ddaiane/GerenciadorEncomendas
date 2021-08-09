@@ -11,7 +11,6 @@ import java.util.UUID;
  */
 public class Destinatario
 {
-    private int chave; //para guardar a chave do banco
     private String nome; 
     private String numeroImovel;
 
@@ -30,7 +29,7 @@ public class Destinatario
     }
     
     public String toString(){
-        return ("Chave = " + chave + "\nNome = "+ nome + "\nNumero do Imóvel = "+ numeroImovel);
+        return ("Nome = "+ nome + "\nNumero do Imóvel = "+ numeroImovel);
     }
 
     @Override
@@ -46,11 +45,4 @@ public class Destinatario
         return Objects.hash(nome, numeroImovel);
     }
 
-    public int getChave() {
-        return chave;
-    }
-
-    public void setChave(int chave) {
-        this.chave = chave;
-    }
 }

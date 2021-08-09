@@ -27,7 +27,7 @@ public class InterfaceExcluirDestinatario implements Comando {
         teste = true;
         do {
             try {
-                numero = leDados("Informe o Numero do destinatário a ser excluido");
+                numero = leDados("Informe o Numero do imóvel do destinatário a ser excluido");
                 teste = false;
             } catch (CampoVazioException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage() + " novamente");

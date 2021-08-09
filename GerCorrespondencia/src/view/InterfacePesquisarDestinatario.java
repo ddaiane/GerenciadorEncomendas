@@ -12,25 +12,25 @@ public class InterfacePesquisarDestinatario implements Comando{
 
     @Override
     public void executar() {
-        String numero = null;
+        String nome = null;
         boolean teste = true;
 
         do {
             try {
-                numero = leDados("Informe o numero do apartamento a ser pesquisado");
+                nome = leDados("Informe o nome completo do destinatário a ser pesquisado");
                 teste = false;
             } catch (CampoVazioException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage() + " novamente");
             }
         } while (teste);
 
-        pesquisaDestinatario(numero);
+        pesquisaDestinatario(nome);
     }
 
-    private void pesquisaDestinatario(String numero) {
+    private void pesquisaDestinatario(String nome) {
         DestinatarioDAO dao = new DestinatarioDAO();
         try {
-            Destinatario destinatario = dao.pesquisarDestinatario(numero);
+            Destinatario destinatario = dao.pesquisarDestinatario(nome);
             JOptionPane.showMessageDialog(null, destinatario.toString());
         } catch (DestinatarioInexistenteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

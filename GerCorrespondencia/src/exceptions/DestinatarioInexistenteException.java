@@ -2,7 +2,7 @@ package exceptions;
 
 public class DestinatarioInexistenteException extends Exception {
 
-    public DestinatarioInexistenteException(String numero) {
-        super("Nao ha desinatario cadastrado no apartamento " + numero + ".");
+    public DestinatarioInexistenteException(String nome) {
+        super("Nao ha destinatario cadastrado com o nome " + nome + ".");
     }
 }

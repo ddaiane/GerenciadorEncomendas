@@ -12,8 +12,7 @@ import java.util.Objects;
  */
 public class Movimento
 {
-    private int chave; //para registrar a chave do banco de dados
-    private Correspondencia correspondencia;
+    private Correspondencia correspondencia; //na correspondenca tem o destinatario!
     private String quemRegistra;
     private Calendar data;
     private String quemRetira; //Só para movimento de saída
@@ -71,18 +70,10 @@ public class Movimento
         this.quemRetira = quemRetira;
     }
 
-    public int getChave() {
-        return chave;
-    }
-
-    public void setChave(int chave) {
-        this.chave = chave;
-    }
 
     @Override
     public String toString() {
         return "Movimento{" +
-                "chave=" + chave +
                 ", correspondencia=" + correspondencia +
                 ", quemRegistra='" + quemRegistra + '\'' +
                 ", data=" + verData() +
@@ -95,12 +86,12 @@ public class Movimento
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Movimento movimento = (Movimento) o;
-        return chave == movimento.chave && correspondencia.equals(movimento.correspondencia) && getData().equals(movimento.getData());
+        return correspondencia.equals(movimento.correspondencia) && getData().equals(movimento.getData());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(chave, correspondencia, getData());
+        return Objects.hash(correspondencia, getData());
     }
 
 

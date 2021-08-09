@@ -29,13 +29,13 @@ public class DestinatarioDAO implements OperacoesDAO<Destinatario> {
         return null;
     }
 
-    public Destinatario pesquisarDestinatario(String numero) throws DestinatarioInexistenteException {
+    public Destinatario pesquisarDestinatario(String nome) throws DestinatarioInexistenteException {
         for(Destinatario destinatario : bancoDeDados.getDestinatarios()) {
-            if(destinatario.getNumeroImovel().equals(numero)) {
+            if(destinatario.getNome().equals(nome)) {
                 return destinatario;
             }
         }
-        throw new DestinatarioInexistenteException(numero);
+        throw new DestinatarioInexistenteException(nome);
     }
 
 }
