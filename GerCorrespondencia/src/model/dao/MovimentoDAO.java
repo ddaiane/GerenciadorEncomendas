@@ -6,6 +6,8 @@ import java.util.List;
 
 public class MovimentoDAO implements OperacoesDAO<Movimento> {
 
+    private final BancoDeDados bancoDeDados = BancoDeDados.getInstance();
+
     @Override
     public void inserir(Movimento obj) {
 
@@ -23,6 +25,6 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
 
     @Override
     public List<Movimento> pesquisar() {
-        return null;
+        return bancoDeDados.getMovimentos();
     }
 }
