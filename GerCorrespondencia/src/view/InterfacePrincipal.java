@@ -28,7 +28,7 @@ public class InterfacePrincipal implements Comando{
                         + "\n5 - Listar todos os Movimentos de um Determinado Destinatario"
                         + "\n6 - Listar todos os Movimentos de uma Determinada Data"
                         + "\n7 - Listar todos os Movimentos Registrados no Sistema"
-                        + "\n8 - Inserir um Determinado Destinatario"
+                        + "\n8 - Cadastrar um Destinatario"
                         + "\n9 - Pesquisar Dados de um Determinado Destinatario"
                         + "\n10 - Excluir um Determinado Destinatario");
 

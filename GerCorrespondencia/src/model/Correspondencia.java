@@ -10,7 +10,6 @@ import java.util.Objects;
  */
 public class Correspondencia //Generalização ou classe mãe
 {
-    private int chave; //para guardar a chave do banco de dados
     private Destinatario destino;
     private boolean status; //TRUE é porque já foi retirado
     
@@ -26,32 +25,12 @@ public class Correspondencia //Generalização ou classe mãe
     public boolean getStatus() { return status; }
       
     public String toString() {
-        String saida = "Chave = "+ getChave() + "\n" + getDestino().toString();
-        if (status) saida += "Objeto já foi retirado";
-        else saida += "Objeto ainda não foi retirado";
+        String saida =  "Destinatário: " + getDestino().toString();
+        if (status) saida += "\nObjeto já foi retirado";
+        else saida += "\nObjeto ainda não foi retirado";
         return saida;        
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Correspondencia that = (Correspondencia) o;
-        return (this.getChave() == that.getChave());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getChave(), getDestino(), status);
-    }
-
-    public int getChave() {
-        return chave;
-    }
-
-    public void setChave(int chave) {
-        this.chave = chave;
-    }
 
     public Destinatario getDestino() {
         return destino;
@@ -59,5 +38,18 @@ public class Correspondencia //Generalização ou classe mãe
 
     public void setDestino(Destinatario destino) {
         this.destino = destino;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Correspondencia)) return false;
+        Correspondencia that = (Correspondencia) o;
+        return getStatus() == that.getStatus() && getDestino().equals(that.getDestino());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDestino(), getStatus());
     }
 }

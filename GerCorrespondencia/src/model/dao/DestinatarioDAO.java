@@ -35,7 +35,16 @@ public class DestinatarioDAO implements OperacoesDAO<Destinatario> {
                 return destinatario;
             }
         }
-        throw new DestinatarioInexistenteException(nome);
+        throw new DestinatarioInexistenteException();
+    }
+
+    public Destinatario pesquisarPorNumero(String numero) throws DestinatarioInexistenteException {
+        for(Destinatario destinatario : bancoDeDados.getDestinatarios()) {
+            if(destinatario.getNumeroImovel().equals(numero)) {
+                return destinatario;
+            }
+        }
+        throw new DestinatarioInexistenteException();
     }
 
 }
