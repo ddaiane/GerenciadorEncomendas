@@ -39,7 +39,7 @@ public class InterfacePesquisarMovimentosData implements Comando {
         StringBuilder todasMovimentacoes = new StringBuilder();
 
         if(movimentos.isEmpty()) {
-            todasMovimentacoes.append("Não há movimentações registrados para esta data.");
+            todasMovimentacoes.append("Não há movimentações registrados para a data: ").append(dataPesquisada);
         } else {
             for(Movimento movimento : movimentos) {
                 todasMovimentacoes.append(movimento.toString()).append("\n");
