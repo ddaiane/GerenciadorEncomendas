@@ -5,34 +5,27 @@ import controle.Comando;
 import controle.Processador;
 import exceptions.CampoVazioException;
 import exceptions.DestinatarioInexistenteException;
-import exceptions.TipoNaoIdentificadoException;
 import model.*;
 import model.dao.CorrespondenciaDAO;
 import model.dao.DestinatarioDAO;
 import model.dao.MovimentoDAO;
 
-import java.util.Objects;
 
 public class InterfaceRegistrarEntrada implements Comando {
+
 
     public void executar() {
         String quemRegistra = null;
         String numeroImovel;
-        String tipo = null;
+        int tipo;
         Destinatario destinatario = null;
         boolean teste = true;
 
+        //informa o tipo
+        Object[] opcao = {"Carta", "Pacote"};
+        tipo = JOptionPane.showOptionDialog(null, "Selecione o tipo de correspondencia", null, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[0]);
 
-        do {
-            try {
-                tipo = leTipo("Digite o tipo: \n1 - Carta \n2 -  Pacote");
-                teste = false;
-            } catch (CampoVazioException | TipoNaoIdentificadoException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            }
-        } while (teste);
 
-        teste = true;
         do {
             try {
                 numeroImovel = leDados("Informe o número do imóvel do destinatário");
@@ -57,21 +50,12 @@ public class InterfaceRegistrarEntrada implements Comando {
         } while (teste);
 
 
-        if (tipo.equals("1")) { //instanciar e criar movimento caso seja carta
-            Carta carta = null;
-            teste = true;
-            do {
-                try {
-                    carta = cadastraCarta(destinatario);
-                    teste = false;
-                } catch (CampoVazioException | TipoNaoIdentificadoException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage());
-                }
-            } while (teste);
+        if (tipo == 0) { //instanciar e criar movimento caso seja carta
+            Carta carta = cadastraCarta(destinatario);
             registraCorrespondencia(carta);
             registraMovimento(carta, quemRegistra);
 
-        } else if (tipo.equals("2")) { //instanciar e criar movimento caso pacote
+        } else if (tipo == 1) { //instanciar e criar movimento caso pacote
             Pacote pacote = null;
             teste = true;
             do {
@@ -85,7 +69,6 @@ public class InterfaceRegistrarEntrada implements Comando {
             registraCorrespondencia(pacote);
             registraMovimento(pacote, quemRegistra);
         }
-        JOptionPane.showMessageDialog(null, "Correspondencia cadastrada com sucesso");
     }
 
 
@@ -111,16 +94,16 @@ public class InterfaceRegistrarEntrada implements Comando {
     private void registraCorrespondencia(Correspondencia correspondencia) {
         CorrespondenciaDAO dao = new CorrespondenciaDAO();
         dao.inserir(correspondencia);
+        JOptionPane.showMessageDialog(null, "Correspondencia cadastrada com sucesso! \nAnote na correspondencia a ID de localização: " + correspondencia.getId());
     }
 
-
-    private Carta cadastraCarta(Destinatario destinatario) throws CampoVazioException, TipoNaoIdentificadoException {
-        String ar = leTipo("A carta possuía registro de recebimento? \nDigite 1 para não e 2 para sim");
-        int i = Integer.parseInt(ar);
+    private Carta cadastraCarta(Destinatario destinatario) {
         boolean recibo = false;
-        if(i == 2) {recibo = true;}
+        int opcao = JOptionPane.showConfirmDialog(null,"A carta possui aviso de recebimento?","Cadastra carta",JOptionPane.YES_NO_OPTION);
+        if(opcao == 0) {recibo = true;}
         return new Carta(destinatario, recibo);
     }
+
 
     private Pacote cadastraPacote(Destinatario destinatario) throws CampoVazioException {
         String empresa = leDados("Digite o nome da empresa que enviou o pacote");
@@ -135,15 +118,4 @@ public class InterfaceRegistrarEntrada implements Comando {
             return opcao;
         }
     }
-
-    public String leTipo(String mensagem) throws CampoVazioException, TipoNaoIdentificadoException {
-        String opcao = JOptionPane.showInputDialog(null, mensagem);
-        if (opcao.contains(" ") || opcao.length() == 0) {
-            throw new CampoVazioException("Digite 1 ou 2.");
-        } else if(!opcao.equals("1") && !opcao.equals("2")) {
-            throw new TipoNaoIdentificadoException();
-        }
-        return opcao;
-    }
-
 }
