@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class Movimento
 {
-    private Correspondencia correspondencia; //na correspondenca tem o destinatario!
+    private Correspondencia correspondencia; //na correspondencia tem o destinatário
     private String quemRegistra;
     private Calendar data;
     private String quemRetira; //Só para movimento de saída

@@ -17,11 +17,11 @@ import javax.swing.*;
 public class InterfaceRegistrarSaida implements Comando {
 
     public void executar() {
-        String quemRetira = null;
         String sair = null;
-        Destinatario destinatario = null;
-        Calendar data = null;
-        //status status = null;
+        String quemRetira = null;
+        String quemRegistra = null;
+        Calendar date = null;
+        status status = null;
         boolean teste = true;
 
 
@@ -35,26 +35,18 @@ public class InterfaceRegistrarSaida implements Comando {
             }
         } while (teste);
 
+
         teste = true;
         do {
             try {
-                destinatario = leDados("Informe o destinatario da correspondencia: ");
+                quemRegistra = leDados("Informe o nome de quem está registrando a retirada: ");
                 teste = false;
             } catch (CampoVazioException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage() + " novamente");
             }
         } while (teste);
 
-
-        teste = true;
-        do {
-            try {
-                data = leDados("Informe a data (AAAA/MM/DD) em que esta sendo retirada: ");
-                teste = false;
-            } catch (CampoVazioException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage() + " novamente");
-            }
-        } while (teste);
+        //editar status precisa ser implementado em MovimentoDAO
 
         /*
         //Colocar exceção?
@@ -77,8 +69,17 @@ public class InterfaceRegistrarSaida implements Comando {
             } catch (CampoVazioException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage() + " novamente");
             } catch (NumberFormatException nfe) {
-                JOptionPane.showMessageDialog(null, nfe.getMessage() + " Isso não é um número inteiro");
+                JOptionPane.showMessageDialog(null, nfe.getMessage() + "Este não é um número inteiro");
             }
         } while (teste);
+    }
+
+    public String leDados(String mensagem) throws CampoVazioException {
+        String opcao = JOptionPane.showInputDialog(null, mensagem);
+        if (opcao.length() == 0) {
+            throw new CampoVazioException(mensagem);
+        } else {
+            return opcao;
+        }
     }
 }
