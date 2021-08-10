@@ -7,7 +7,9 @@ import exceptions.CampoVazioException;
 import exceptions.DestinatarioInexistenteException;
 import exceptions.TipoNaoIdentificadoException;
 import model.*;
+import model.dao.CorrespondenciaDAO;
 import model.dao.DestinatarioDAO;
+import model.dao.MovimentoDAO;
 
 import java.util.Objects;
 
@@ -15,9 +17,8 @@ public class InterfaceRegistrarEntrada implements Comando {
 
     public void executar() {
         String quemRegistra = null;
-        String numeroImovel = null;
+        String numeroImovel;
         String tipo = null;
-        String sair = null;
         Destinatario destinatario = null;
         boolean teste = true;
 
@@ -36,12 +37,13 @@ public class InterfaceRegistrarEntrada implements Comando {
             try {
                 numeroImovel = leDados("Informe o número do imóvel do destinatário");
                 destinatario = pesquisaDestinatario(numeroImovel);
-                if(destinatario != null) {teste = false;}
+                if (destinatario != null) {
+                    teste = false;
+                }
             } catch (CampoVazioException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage() + " novamente");
             }
         } while (teste);
-
 
 
         teste = true;
@@ -55,65 +57,74 @@ public class InterfaceRegistrarEntrada implements Comando {
         } while (teste);
 
 
-
-        if(tipo.equals("1")) { //instanciar e criar movimento caso seja carta
+        if (tipo.equals("1")) { //instanciar e criar movimento caso seja carta
             Carta carta = null;
-            try {
-                carta = cadastraCarta(destinatario);
-            } catch (CampoVazioException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage() + " novamente");
-            } catch (NumberFormatException nfe){
-                JOptionPane.showMessageDialog(null, nfe.getMessage() + " Isso não é um número inteiro");
-            }
-            Movimento registraMovimento = new Movimento(carta, quemRegistra);
-         //todo envia movimento para o dao???
-
-        } else if (tipo.equals("2")){
-            //todo perguntar empresa
-            try {
-                Pacote pacote = cadastraPacote(destinatario);
-            } catch (CampoVazioException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage() + " novamente");
-            } catch (NumberFormatException nfe){
-                JOptionPane.showMessageDialog(null, nfe.getMessage() + " Isso não é um número inteiro");
-            }
-            // Movimento registraMovimento = (pacote, quemRegistra);
-            //todo envia movimento para o dao???
-        }
-
-
-        teste = true;
-        do {
-            try {
-                sair = leDados("Digite 0 para voltar");
-                int i = Integer.parseInt(sair);
-                if (i != 0) continue;
-                if (i == 0) {
-                    Processador.direcionar("0");
+            teste = true;
+            do {
+                try {
+                    carta = cadastraCarta(destinatario);
+                    teste = false;
+                } catch (CampoVazioException | TipoNaoIdentificadoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
-                teste = false;
-            } catch (CampoVazioException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage() + " novamente");
-            } catch (NumberFormatException nfe){
-                JOptionPane.showMessageDialog(null, nfe.getMessage() + " Isso não é um número inteiro");
-            }
-        } while (teste);
+            } while (teste);
+            registraCorrespondencia(carta);
+            registraMovimento(carta, quemRegistra);
 
+        } else if (tipo.equals("2")) { //instanciar e criar movimento caso pacote
+            Pacote pacote = null;
+            teste = true;
+            do {
+                try {
+                    pacote = cadastraPacote(destinatario);
+                    teste = false;
+                } catch (CampoVazioException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage() + " novamente");
+                }
+            } while (teste);
+            registraCorrespondencia(pacote);
+            registraMovimento(pacote, quemRegistra);
+        }
+        JOptionPane.showMessageDialog(null, "Correspondencia cadastrada com sucesso");
     }
 
-    private Carta cadastraCarta(Destinatario destinatario) throws CampoVazioException {
-        String ar = leDados("A carta possuía registro de recebimento? \nDigite 0 para não e 1 para sim");
+
+    private Destinatario pesquisaDestinatario(String numero) {
+        DestinatarioDAO dao = new DestinatarioDAO();
+        Destinatario destinatario = null;
+        try {
+            destinatario = dao.pesquisarPorNumero(numero);
+        } catch (DestinatarioInexistenteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return destinatario;
+    }
+
+
+    private void registraMovimento(Correspondencia correspondencia, String quemRegistra) {
+            Movimento movimento = new Movimento(correspondencia, quemRegistra);
+            MovimentoDAO dao = new MovimentoDAO();
+            dao.inserir(movimento);
+    }
+
+
+    private void registraCorrespondencia(Correspondencia correspondencia) {
+        CorrespondenciaDAO dao = new CorrespondenciaDAO();
+        dao.inserir(correspondencia);
+    }
+
+
+    private Carta cadastraCarta(Destinatario destinatario) throws CampoVazioException, TipoNaoIdentificadoException {
+        String ar = leTipo("A carta possuía registro de recebimento? \nDigite 1 para não e 2 para sim");
         int i = Integer.parseInt(ar);
         boolean recibo = false;
-        if(i == 1) {recibo = true;}
-        Carta carta = new Carta(destinatario, recibo);
-        return carta;
+        if(i == 2) {recibo = true;}
+        return new Carta(destinatario, recibo);
     }
 
     private Pacote cadastraPacote(Destinatario destinatario) throws CampoVazioException {
         String empresa = leDados("Digite o nome da empresa que enviou o pacote");
-        Pacote pacote = new Pacote(destinatario, empresa);
-        return pacote;
+        return new Pacote(destinatario, empresa);
     }
 
     public String leDados(String mensagem) throws CampoVazioException {
@@ -132,19 +143,7 @@ public class InterfaceRegistrarEntrada implements Comando {
         } else if(!opcao.equals("1") && !opcao.equals("2")) {
             throw new TipoNaoIdentificadoException();
         }
-
         return opcao;
-    }
-
-    private Destinatario pesquisaDestinatario(String numero) {
-        DestinatarioDAO dao = new DestinatarioDAO();
-        Destinatario destinatario = null;
-        try {
-            destinatario = dao.pesquisarPorNumero(numero);
-        } catch (DestinatarioInexistenteException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-        return destinatario;
     }
 
 }

@@ -28,8 +28,8 @@ public class Carta extends Correspondencia
     
     public String toString(){
         String saida = super.toString();
-        if (recibo) saida += "model.Carta com recibo";
-        else saida += "model.Carta sem recibo";
+        if (recibo) saida += "\nCarta com recibo";
+        else saida += "\nCarta sem recibo";
         return saida;
     }
 

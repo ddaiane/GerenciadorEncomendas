@@ -2,6 +2,7 @@ package view;
 
 import controle.Comando;
 import exceptions.CampoVazioException;
+import exceptions.DestinatarioInexistenteException;
 import model.Destinatario;
 import model.dao.DestinatarioDAO;
 
@@ -14,11 +15,13 @@ public class InterfaceExcluirDestinatario implements Comando {
         String nome = null;
         String numero = null;
         boolean teste = true;
+        Destinatario destinatario = null;
 
         do {
             try {
                 nome = leDados("Informe o Nome do destinatário a ser excluido");
-                teste = false;
+                destinatario = pesquisaNome(nome); //testa se o destinatario existe no cadastro
+                if (destinatario != null) {teste = false;}
             } catch (CampoVazioException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage() + " novamente");
             }
@@ -28,17 +31,19 @@ public class InterfaceExcluirDestinatario implements Comando {
         do {
             try {
                 numero = leDados("Informe o Numero do imóvel do destinatário a ser excluido");
-                teste = false;
-            } catch (CampoVazioException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage() + " novamente");
+                Destinatario confereDestinatario = pesquisaNumero(numero); //testar se o numero pertence ao nome informado
+                if (confereDestinatario.getNumeroImovel().equals(destinatario.getNumeroImovel())) {teste = false;}
+                else {JOptionPane.showMessageDialog(null, "O numero do imóvel não pertence ao destinatário informado.");}
+            } catch (CampoVazioException | DestinatarioInexistenteException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } while (teste);
 
-        excluiDestinatario(nome, numero);
+        excluiDestinatario(destinatario);
+        JOptionPane.showMessageDialog(null, "Destinatario excluído com sucesso!");
     }
 
-    void excluiDestinatario(String nome, String numero) {
-        Destinatario destinatario = new Destinatario(nome, numero);
+    void excluiDestinatario(Destinatario destinatario) {
         DestinatarioDAO dao = new DestinatarioDAO();
         dao.excluir(destinatario);
     }
@@ -50,5 +55,23 @@ public class InterfaceExcluirDestinatario implements Comando {
         } else {
             return opcao;
         }
+    }
+
+    private Destinatario pesquisaNome(String nome) {
+        DestinatarioDAO dao = new DestinatarioDAO();
+        Destinatario destinatario = null;
+        try {
+            destinatario = dao.pesquisarDestinatario(nome);
+        } catch (DestinatarioInexistenteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return destinatario;
+    }
+
+    private Destinatario pesquisaNumero(String numero) throws DestinatarioInexistenteException {
+        DestinatarioDAO dao = new DestinatarioDAO();
+        Destinatario destinatario = null;
+        destinatario = dao.pesquisarPorNumero(numero);
+        return destinatario;
     }
 }

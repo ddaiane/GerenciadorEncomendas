@@ -34,6 +34,7 @@ public class InterfaceInserirDestinatario implements Comando {
         } while (teste);
 
         salvaDestinatario(nome, numero);
+        JOptionPane.showMessageDialog(null, "Destinatario cadastrado com sucesso!");
     }
 
     private void salvaDestinatario(String nome, String numero) {
