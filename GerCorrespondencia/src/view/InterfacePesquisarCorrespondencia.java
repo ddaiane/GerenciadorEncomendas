@@ -35,14 +35,10 @@ public class InterfacePesquisarCorrespondencia implements Comando{
 
     private void informaCorrespondenciasNaoRetiradas(Destinatario destinatario) {
         CorrespondenciaDAO correspondenciaDAO = new CorrespondenciaDAO();
-        StringBuilder correspondencias = new StringBuilder();
 
         if(destinatario != null) {
             List<Correspondencia> naoRetiradas = correspondenciaDAO.pesquisarNaoRetiradas(destinatario);
-
-            correspondencias.append(pegaStringCorrespondencias(naoRetiradas));
-
-            JOptionPane.showMessageDialog(null, correspondencias);
+            JOptionPane.showMessageDialog(null, pegaStringCorrespondencias(naoRetiradas));
         }
     }
 

@@ -31,16 +31,16 @@ public class CorrespondenciaDAO implements OperacoesDAO<Correspondencia> {
     }
 
     public List<Correspondencia> pesquisarNaoRetiradas(Destinatario destinatario) {
-        List<Correspondencia> correspondenciasNaoEntregues = new ArrayList<>();
+        List<Correspondencia> correspondenciasNaoRetiradas = new ArrayList<>();
 
         for(Correspondencia correspondencia : bancoDeDados.getCorrespondencias()) {
             boolean doDestinatario = correspondencia.getDestino().equals(destinatario);
             if(doDestinatario && !correspondencia.getStatus()) {
-                correspondenciasNaoEntregues.add(correspondencia);
+                correspondenciasNaoRetiradas.add(correspondencia);
             }
         }
 
-        return correspondenciasNaoEntregues;
+        return correspondenciasNaoRetiradas;
     }
 
 }
