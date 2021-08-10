@@ -17,19 +17,21 @@ public class InterfacePesquisarCorrespondencia implements Comando{
 
     @Override
     public void executar() {
-        String nome = null;
+        String nome;
         boolean teste = true;
+        Destinatario destinatario = null;
 
         do {
             try {
                 nome = leDados("Informe o nome completo do destinatário a ser pesquisado");
-                teste = false;
+                destinatario = pesquisaDestinatario(nome);
+                if (destinatario != null) {teste = false;}
             } catch (CampoVazioException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage() + " novamente");
             }
         } while (teste);
 
-        Destinatario destinatario = pesquisaDestinatario(nome);
+
         informaCorrespondenciasNaoRetiradas(destinatario);
     }
 
