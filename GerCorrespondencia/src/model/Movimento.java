@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Objects;
@@ -44,6 +45,11 @@ public class Movimento
 
     public void setData(Calendar data) {
         this.data = data;
+    }
+
+    public String getDataFormatada() {
+        SimpleDateFormat df = new SimpleDateFormat( "dd/MM/yyyy");
+        return df.format(data.getTime());
     }
 
     public Correspondencia getCorrespondencia() {

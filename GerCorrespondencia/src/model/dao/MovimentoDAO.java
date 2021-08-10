@@ -3,6 +3,7 @@ package model.dao;
 import model.Destinatario;
 import model.Movimento;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,9 +36,15 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
         return null;
     }
 
-    public List<Movimento> pesquisar(Date data) {
-        // TODO -> implementar
-        return null;
+    public List<Movimento> pesquisar(String data) {
+        List<Movimento> movimentos = new ArrayList<>();
+        for(Movimento movimento : bancoDeDados.getMovimentos()) {
+            if (movimento.getDataFormatada().equals(data)) {
+                movimentos.add(movimento);
+            }
+        }
+
+        return movimentos;
     }
 
 
