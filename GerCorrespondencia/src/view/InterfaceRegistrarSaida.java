@@ -4,13 +4,12 @@ import javax.swing.*;
 import controle.Comando;
 import controle.Processador;
 import exceptions.CampoVazioException;
-import exceptions.DestinatarioInexistenteException;
-import exceptions.TipoNaoIdentificadoException;
 import model.*;
 import model.dao.DestinatarioDAO;
 import model.dao.MovimentoDAO;
 import model.dao.CorrespondenciaDAO;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 import javax.swing.*;
@@ -22,13 +21,9 @@ public class InterfaceRegistrarSaida implements Comando {
         String sair = null;
         Destinatario destinatario = null;
         Calendar data = null;
-        status status = null;
+        //status status = null;
         boolean teste = true;
 
-        //Colocar exceção?
-        if (status == true) {
-            System.out.println("Essa correspondencia ja foi retirada.");
-        }
 
         teste = true;
         do {
@@ -61,6 +56,13 @@ public class InterfaceRegistrarSaida implements Comando {
             }
         } while (teste);
 
+        /*
+        //Colocar exceção?
+        if (status == true) {
+            System.out.println("Essa correspondencia ja foi retirada.");
+        }
+        */
+
 
         teste = true;
         do {
@@ -78,16 +80,5 @@ public class InterfaceRegistrarSaida implements Comando {
                 JOptionPane.showMessageDialog(null, nfe.getMessage() + " Isso não é um número inteiro");
             }
         } while (teste);
-
-
-        public String leDados (String mensagem) throws CampoVazioException {
-            String opcao = JOptionPane.showInputDialog(null, mensagem);
-            if (opcao.contains(" ") || opcao.length() == 0) {
-                throw new CampoVazioException(mensagem);
-            } else {
-                return opcao;
-            }
-        }
     }
-
 }
