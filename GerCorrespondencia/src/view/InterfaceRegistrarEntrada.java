@@ -13,6 +13,7 @@ import model.dao.MovimentoDAO;
 
 public class InterfaceRegistrarEntrada implements Comando {
 
+
     public void executar() {
         String quemRegistra = null;
         String numeroImovel;
@@ -20,7 +21,7 @@ public class InterfaceRegistrarEntrada implements Comando {
         Destinatario destinatario = null;
         boolean teste = true;
 
-
+        //informa o tipo
         Object[] opcao = {"Carta", "Pacote"};
         tipo = JOptionPane.showOptionDialog(null, "Selecione o tipo de correspondencia", null, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcao, opcao[0]);
 
@@ -68,8 +69,6 @@ public class InterfaceRegistrarEntrada implements Comando {
             registraCorrespondencia(pacote);
             registraMovimento(pacote, quemRegistra);
         }
-
-        JOptionPane.showMessageDialog(null, "Correspondencia cadastrada com sucesso");
     }
 
 
@@ -95,6 +94,7 @@ public class InterfaceRegistrarEntrada implements Comando {
     private void registraCorrespondencia(Correspondencia correspondencia) {
         CorrespondenciaDAO dao = new CorrespondenciaDAO();
         dao.inserir(correspondencia);
+        JOptionPane.showMessageDialog(null, "Correspondencia cadastrada com sucesso! \nAnote na correspondencia a ID de localização: " + correspondencia.getId());
     }
 
     private Carta cadastraCarta(Destinatario destinatario) {

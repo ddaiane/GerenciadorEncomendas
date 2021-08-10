@@ -12,14 +12,24 @@ public class Correspondencia //Generalização ou classe mãe
 {
     private Destinatario destino;
     private boolean status; //TRUE é porque já foi retirado
-    
+    private int id;
+
+    Id currentValue = Id.getInstance();
+
     public Correspondencia (Destinatario destino){
         this.setDestino(destino);
+
+
+        this.id = currentValue.getNextValue();
         // por default status é inicializado com false.
     }    
      
     public void setStatus(boolean status){
         this.status = status;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public boolean getStatus() { return status; }

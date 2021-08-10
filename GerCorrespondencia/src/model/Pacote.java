@@ -13,6 +13,7 @@ public class Pacote extends Correspondencia
     // instance variables - replace the example below with your own
     private String empresa;
 
+
     /**
      * Constructor for objects of class model.Pacote
      */
@@ -20,6 +21,10 @@ public class Pacote extends Correspondencia
     {
         super (destino);
         this.empresa = empresa;
+    }
+
+    public String getEmpresa() {
+        return empresa;
     }
    
     public String toString(){
