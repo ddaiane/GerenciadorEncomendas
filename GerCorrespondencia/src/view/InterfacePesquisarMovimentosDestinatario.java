@@ -16,11 +16,12 @@ public class InterfacePesquisarMovimentosDestinatario implements Comando{
     public void executar() {
         String nome = null;
         boolean teste = true;
+        Destinatario destinatario = null;
 
         do {
             try {
                 nome = leDados("Informe o nome completo do destinatário a ser pesquisado");
-                Destinatario destinatario = pesquisaNome(nome);
+                destinatario = pesquisaNome(nome);
                 if(destinatario != null) {teste = false;}
             } catch (CampoVazioException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage() + " novamente");
@@ -28,7 +29,7 @@ public class InterfacePesquisarMovimentosDestinatario implements Comando{
         } while (teste);
 
         MovimentoDAO dao = new MovimentoDAO();
-        List<Movimento> movimentos = dao.pesquisaDestinatario(nome);
+        List<Movimento> movimentos = dao.pesquisaDestinatario(destinatario);
         StringBuilder todasMovimentacoes = new StringBuilder();
 
         if(movimentos.isEmpty()) {

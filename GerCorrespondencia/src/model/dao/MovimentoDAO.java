@@ -1,6 +1,7 @@
 package model.dao;
 
 import model.Correspondencia;
+import model.Destinatario;
 import model.Movimento;
 
 import java.text.Normalizer;
@@ -41,6 +42,19 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
             String destinatarioNome = correspondencia.getDestino().getNome();
             String nomeNormalizado = normalizaTexto(destinatarioNome);
             if (nomeNormalizado.equals(destinatarioNormalizado)) {
+                movimentos.add(movimento);
+            }
+        }
+        return movimentos;
+    }
+    public List<Movimento> pesquisaDestinatario(Destinatario destinatario) {
+        List<Movimento> movimentos = new ArrayList<>();
+        if (destinatario == null) {
+            return movimentos;
+        }
+        for(Movimento movimento : bancoDeDados.getMovimentos()) {
+            Destinatario destinatarioMovimento = movimento.getCorrespondencia().getDestino();
+            if (destinatarioMovimento.equals(destinatario)) {
                 movimentos.add(movimento);
             }
         }
