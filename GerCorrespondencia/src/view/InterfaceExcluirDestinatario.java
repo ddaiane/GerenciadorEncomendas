@@ -4,9 +4,12 @@ import controle.Comando;
 import exceptions.CampoVazioException;
 import exceptions.DestinatarioInexistenteException;
 import model.Destinatario;
+import model.Movimento;
 import model.dao.DestinatarioDAO;
+import model.dao.MovimentoDAO;
 
 import javax.swing.*;
+import java.util.List;
 
 public class InterfaceExcluirDestinatario implements Comando {
 
@@ -39,11 +42,21 @@ public class InterfaceExcluirDestinatario implements Comando {
             }
         } while (teste);
 
+        excluiMovimentacoes(destinatario);
         excluiDestinatario(destinatario);
         JOptionPane.showMessageDialog(null, "Destinatario excluído com sucesso!");
     }
 
-    void excluiDestinatario(Destinatario destinatario) {
+    private void excluiMovimentacoes(Destinatario destinatario) {
+        MovimentoDAO dao = new MovimentoDAO();
+        List<Movimento> lista = dao.pesquisaQuemRetira(destinatario.getNome());
+
+        for(Movimento movimento : lista) {
+            dao.excluir(movimento);
+        }
+    }
+
+    private void excluiDestinatario(Destinatario destinatario) {
         DestinatarioDAO dao = new DestinatarioDAO();
         dao.excluir(destinatario);
     }
