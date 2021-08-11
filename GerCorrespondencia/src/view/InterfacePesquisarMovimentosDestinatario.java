@@ -59,7 +59,7 @@ public class InterfacePesquisarMovimentosDestinatario implements Comando{
             Processador.direcionar("0");
             return null;
         }
-        opcao = opcao.replaceAll("\\s{2,}", " ").trim();
+        opcao = opcao.replaceAll("\\s{2,}", " ").trim().toLowerCase();
         if (opcao.length() == 0) {
             throw new CampoVazioException(mensagem);
         } else {
