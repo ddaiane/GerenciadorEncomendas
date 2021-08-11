@@ -3,6 +3,7 @@ package view;
 import controle.Comando;
 import controle.Processador;
 import exceptions.CampoVazioException;
+import exceptions.DestinatarioJaCadastradoException;
 import model.Destinatario;
 import model.dao.DestinatarioDAO;
 
@@ -34,14 +35,25 @@ public class InterfaceInserirDestinatario implements Comando {
             }
         } while (teste);
 
-        salvaDestinatario(nome, numero);
-        JOptionPane.showMessageDialog(null, "Destinatario cadastrado com sucesso!");
+
+
+        boolean salvo = salvaDestinatario(nome, numero);
+        if (salvo) {JOptionPane.showMessageDialog(null, "Destinatario cadastrado com sucesso!");
+        }
     }
 
-    private void salvaDestinatario(String nome, String numero) {
+    private boolean salvaDestinatario(String nome, String numero) {
+        boolean disponivel = false;
         Destinatario destinatario = new Destinatario(nome, numero);
+
         DestinatarioDAO dao = new DestinatarioDAO();
-        dao.inserir(destinatario);
+        try {
+            disponivel = dao.pesquisarCadastro(destinatario);
+        } catch (DestinatarioJaCadastradoException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        if(disponivel) {dao.inserir(destinatario);}
+        return disponivel;
     }
 
     public String leDados(String mensagem) throws CampoVazioException {

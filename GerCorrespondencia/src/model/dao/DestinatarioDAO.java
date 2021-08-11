@@ -1,5 +1,6 @@
 package model.dao;
 
+import exceptions.DestinatarioJaCadastradoException;
 import model.Destinatario;
 import exceptions.DestinatarioInexistenteException;
 
@@ -27,6 +28,17 @@ public class DestinatarioDAO implements OperacoesDAO<Destinatario> {
     @Override
     public List<Destinatario> pesquisar() {
         return null;
+    }
+
+    public boolean pesquisarCadastro(Destinatario destinatario) throws DestinatarioJaCadastradoException {
+        for(Destinatario cadastro : bancoDeDados.getDestinatarios()) {
+            if(cadastro.equals(destinatario)) {
+                throw new DestinatarioJaCadastradoException();
+
+            }
+
+
+    } return true;
     }
 
     public Destinatario pesquisarDestinatario(String nome) throws DestinatarioInexistenteException {
