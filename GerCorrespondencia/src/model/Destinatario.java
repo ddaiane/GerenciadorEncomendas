@@ -29,7 +29,7 @@ public class Destinatario
     }
     
     public String toString(){
-        return ("Nome = "+ nome + "\nNumero do Imóvel = "+ numeroImovel);
+        return (nome + "\nNumero do Imóvel: "+ numeroImovel);
     }
 
     @Override

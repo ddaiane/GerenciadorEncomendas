@@ -74,18 +74,16 @@ public class Movimento
     }
 
     public void setQuemRetira(String quemRetira) {
-        this.quemRetira = quemRetira;
+            this.quemRetira = quemRetira;
     }
-
 
     @Override
     public String toString() {
-        return "Movimento{" +
-                ", correspondencia=" + correspondencia +
-                ", quemRegistra='" + quemRegistra + '\'' +
-                ", data=" + verData() +
-                ", quemRetira='" + quemRetira + '\'' +
-                '}';
+        return "Movimento " +
+                "Correspondencia \n" + correspondencia +
+                "\nRegistrado por: " + quemRegistra +
+                "\nData: " + verData() +
+                "\nRetirado por: " + quemRetira;
     }
 
     @Override

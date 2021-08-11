@@ -18,8 +18,6 @@ public class Correspondencia //Generalização ou classe mãe
 
     public Correspondencia (Destinatario destino){
         this.setDestino(destino);
-
-
         this.id = currentValue.getNextValue(); //puxa o numero de id do contador da classe Id
         // por default status é inicializado com false.
     }    
