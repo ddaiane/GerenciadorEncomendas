@@ -20,7 +20,7 @@ public class Correspondencia //Generalização ou classe mãe
         this.setDestino(destino);
 
 
-        this.id = currentValue.getNextValue();
+        this.id = currentValue.getNextValue(); //puxa o numero de id do contador da classe Id
         // por default status é inicializado com false.
     }    
      
@@ -28,19 +28,11 @@ public class Correspondencia //Generalização ou classe mãe
         this.status = status;
     }
 
+    public boolean getStatus() { return status; }
+
     public long getId() {
         return id;
     }
-
-    public boolean getStatus() { return status; }
-      
-    public String toString() {
-        String saida =  "Destinatário: " + getDestino().toString();
-        if (status) saida += "\nObjeto já foi retirado";
-        else saida += "\nObjeto ainda não foi retirado";
-        return saida;        
-    }
-
 
     public Destinatario getDestino() {
         return destino;
@@ -48,6 +40,13 @@ public class Correspondencia //Generalização ou classe mãe
 
     public void setDestino(Destinatario destino) {
         this.destino = destino;
+    }
+
+    public String toString() {
+        String saida =  "Destinatário: " + getDestino().toString();
+        if (status) saida += "\nObjeto já foi retirado";
+        else saida += "\nObjeto ainda não foi retirado";
+        return saida;
     }
 
     @Override

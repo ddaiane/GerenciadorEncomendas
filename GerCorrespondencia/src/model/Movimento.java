@@ -27,7 +27,8 @@ public class Movimento
 
     //model.Movimento de entrega da correspondencia para o destinatário
     public Movimento(Correspondencia correspondencia, String quemRetira, String quemRegistra) {
-            correspondencia.setStatus(true);
+        this.setCorrespondencia(correspondencia);
+        correspondencia.setStatus(true);
             this.setQuemRetira(quemRetira);
             this.setQuemRegistra(quemRegistra);
             setData(new GregorianCalendar());
