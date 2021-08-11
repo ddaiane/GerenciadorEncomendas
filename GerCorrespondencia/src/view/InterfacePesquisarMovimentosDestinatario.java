@@ -24,7 +24,7 @@ public class InterfacePesquisarMovimentosDestinatario implements Comando{
         } while (teste);
 
         MovimentoDAO dao = new MovimentoDAO();
-        List<Movimento> movimentos = dao.pesquisaQuemRetira(nome);
+        List<Movimento> movimentos = dao.pesquisaDestinatario(nome);
         StringBuilder todasMovimentacoes = new StringBuilder();
 
         if(movimentos.isEmpty()) {

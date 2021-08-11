@@ -79,7 +79,8 @@ public class InterfaceRegistrarSaida implements Comando {
 
         do {
             try {
-                opcao = Integer.parseInt(leDados("Digite a ID da correspondencia que está sendo retirada:" +
+                opcao = Integer.parseInt(leDados("Digite a ID da correspondencia que está sendo retirada." +
+                        "\nIds de correspondências disponíveis para retirada:" +
                         imprimeNaoRetiradas(aRetirar) + "\nPara sair digite 0."));
             } catch (CampoVazioException e) {
                 JOptionPane.showMessageDialog(null, "Digite um código válido!");
