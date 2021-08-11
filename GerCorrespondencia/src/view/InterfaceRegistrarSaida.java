@@ -106,6 +106,7 @@ public class InterfaceRegistrarSaida implements Comando {
         String saida = " ";
         if(lista.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Esse destinatario nao possui correspondencia a ser retirada.");
+            Processador.direcionar("0");
         }
         else {
             for(Correspondencia correspondencia : lista) {
