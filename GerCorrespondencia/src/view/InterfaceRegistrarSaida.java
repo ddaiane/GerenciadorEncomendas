@@ -57,8 +57,6 @@ public class InterfaceRegistrarSaida implements Comando {
         correspondencia = selecionaCorrespondencia(aRetirar);
         registraMovimento(correspondencia, quemRetira, quemRegistra);
 
-
-
     }
 
     private void registraMovimento(Correspondencia correspondencia, String quemRetira, String quemRegistra) {
@@ -77,13 +75,11 @@ public class InterfaceRegistrarSaida implements Comando {
             try {
                 opcao = Integer.parseInt(leDados("Digite a ID da correspondencia que está sendo retirada." +
                         "\nIds de correspondências disponíveis para retirada:" +
-                        imprimeNaoRetiradas(aRetirar) + "\nPara sair digite 0."));
+                        imprimeNaoRetiradas(aRetirar)));
             } catch (CampoVazioException e) {
                 JOptionPane.showMessageDialog(null, "Digite um código válido!");
             }
 
-            //retorna para interface principal se 0
-            if(opcao==0) { Processador.direcionar("0"); teste = false;}
 
             //verifica se o código é de um pacote nao retirado do destinatario informado
             for (Correspondencia correspondencia : aRetirar) {
@@ -138,6 +134,11 @@ public class InterfaceRegistrarSaida implements Comando {
 
     public String leDados(String mensagem) throws CampoVazioException {
         String opcao = JOptionPane.showInputDialog(null, mensagem);
+        if (opcao == null) { //trata a saida se usuario pressionar cancela
+            Processador.direcionar("0");
+            return null;
+        }
+        opcao = opcao.replaceAll("\\s{2,}", " ").trim();
         if (opcao.length() == 0) {
             throw new CampoVazioException(mensagem);
         } else {

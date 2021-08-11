@@ -28,7 +28,7 @@ public class Pacote extends Correspondencia
     }
    
     public String toString(){
-        return super.toString() + "\nEmpresa remetente: "+ empresa;
+        return super.toString() + "\nTipo: Pacote \nEmpresa remetente: "+ empresa;
     }
 
     @Override

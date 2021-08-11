@@ -79,11 +79,14 @@ public class Movimento
 
     @Override
     public String toString() {
-        return "Movimento " +
-                "Correspondencia \n" + correspondencia +
-                "\nRegistrado por: " + quemRegistra +
-                "\nData: " + verData() +
-                "\nRetirado por: " + quemRetira;
+        String saida = "\nMovimento ";
+        if(quemRetira != null) {saida += "de saída:";} else {saida += "de entrada:";}
+
+        saida +="\nCorrespondencia " + correspondencia +
+                "\nRegistrado por: " + quemRegistra;
+        if (quemRetira != null) {saida += "\nRetirado por " + quemRetira + " na data " + verData();}
+        else {saida += "\nRecebido no dia " + verData();}
+        return saida;
     }
 
     @Override

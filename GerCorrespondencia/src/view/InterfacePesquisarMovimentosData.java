@@ -28,7 +28,7 @@ public class InterfacePesquisarMovimentosData implements Comando {
     }
 
     private String leData() throws ParseException{
-        String dataPesquisada = JOptionPane.showInputDialog(null, "Digite a Data: ","dd/MM/aaaa");
+        String dataPesquisada = JOptionPane.showInputDialog(null, "Digite a Data: ","dd/mm/aaaa");
         if (dataPesquisada == null) { //trata a saida se usuario pressionar cancela
             Processador.direcionar("0");
             return null;

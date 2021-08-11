@@ -56,9 +56,9 @@ public class InterfacePesquisarCorrespondencia implements Comando{
         for(Correspondencia correspondencia : naoRetiradas) {
 
             if(correspondencia instanceof Carta carta) {
-                correspondencias.append(carta).append("\n");
+                correspondencias.append("\n").append(carta).append("\n");
             } else if (correspondencia instanceof Pacote pacote) {
-                correspondencias.append(pacote).append("\n");
+                correspondencias.append("\n").append(pacote).append("\n");
             }
 
         }

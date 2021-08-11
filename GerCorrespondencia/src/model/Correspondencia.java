@@ -41,9 +41,7 @@ public class Correspondencia //Generalização ou classe mãe
     }
 
     public String toString() {
-        String saida =  "Destinatário: " + getDestino().toString();
-        if (status) saida += "\nObjeto já foi retirado";
-        else saida += "\nObjeto ainda não foi retirado";
+        String saida =  "ID: " + this.id + "\nDestinatário: " + getDestino().toString();
         return saida;
     }
 
