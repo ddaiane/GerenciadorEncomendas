@@ -37,12 +37,11 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
         String destinatarioNormalizado = normalizaTexto(destinatario);
 
         for(Movimento movimento : bancoDeDados.getMovimentos()) {
-            for(Correspondencia correspondencia : bancoDeDados.getCorrespondencias()) {
-                String destinatarioNome = correspondencia.getDestino().getNome();
-                String nomeNormalizado = normalizaTexto(destinatarioNome);
-                if (nomeNormalizado.equals(destinatarioNormalizado)) {
-                    movimentos.add(movimento);
-                }
+            Correspondencia correspondencia = movimento.getCorrespondencia();
+            String destinatarioNome = correspondencia.getDestino().getNome();
+            String nomeNormalizado = normalizaTexto(destinatarioNome);
+            if (nomeNormalizado.equals(destinatarioNormalizado)) {
+                movimentos.add(movimento);
             }
         }
         return movimentos;
