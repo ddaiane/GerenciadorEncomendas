@@ -69,7 +69,6 @@ public class InterfaceRegistrarSaida implements Comando {
         Movimento entrega = new Movimento(correspondencia, quemRetira, quemRegistra);
         MovimentoDAO dao = new MovimentoDAO();
         dao.inserir(entrega);
-        System.out.println(entrega.getCorrespondencia().toString());
     }
 
 
