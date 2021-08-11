@@ -24,29 +24,14 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
     }
 
     @Override
-    public void editar(Movimento newObj) {
-
-    }
+    public void editar(Movimento newObj) {    }
 
     @Override
     public List<Movimento> pesquisar() {
         return bancoDeDados.getMovimentos();
     }
 
-    public List<Movimento> pesquisaDestinatario(String destinatario) {
-        List<Movimento> movimentos = new ArrayList<>();
-        String destinatarioNormalizado = normalizaTexto(destinatario);
 
-        for(Movimento movimento : bancoDeDados.getMovimentos()) {
-            Correspondencia correspondencia = movimento.getCorrespondencia();
-            String destinatarioNome = correspondencia.getDestino().getNome();
-            String nomeNormalizado = normalizaTexto(destinatarioNome);
-            if (nomeNormalizado.equals(destinatarioNormalizado)) {
-                movimentos.add(movimento);
-            }
-        }
-        return movimentos;
-    }
     public List<Movimento> pesquisaDestinatario(Destinatario destinatario) {
         List<Movimento> movimentos = new ArrayList<>();
         if (destinatario == null) {
@@ -76,7 +61,6 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
                 movimentos.add(movimento);
             }
         }
-
         return movimentos;
     }
 
