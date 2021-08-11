@@ -56,7 +56,7 @@ public class InterfaceRegistrarSaida implements Comando {
         List<Correspondencia> aRetirar = naoRetiradas(destinatario);
         correspondencia = selecionaCorrespondencia(aRetirar);
         registraMovimento(correspondencia, quemRetira, quemRegistra);
-
+        JOptionPane.showMessageDialog(null, "Entrega registrada com sucesso!");
     }
 
     private void registraMovimento(Correspondencia correspondencia, String quemRetira, String quemRegistra) {

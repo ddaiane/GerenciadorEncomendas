@@ -43,7 +43,7 @@ public class DestinatarioDAO implements OperacoesDAO<Destinatario> {
 
     public Destinatario pesquisarDestinatario(String nome) throws DestinatarioInexistenteException {
         for(Destinatario destinatario : bancoDeDados.getDestinatarios()) {
-            if(destinatario.getNome().equals(nome)) {
+            if(destinatario.getNome().equalsIgnoreCase(nome)) {
                 return destinatario;
             }
         }
@@ -52,7 +52,7 @@ public class DestinatarioDAO implements OperacoesDAO<Destinatario> {
 
     public Destinatario pesquisarPorNumero(String numero) throws DestinatarioInexistenteException {
         for(Destinatario destinatario : bancoDeDados.getDestinatarios()) {
-            if(destinatario.getNumeroImovel().equals(numero)) {
+            if(destinatario.getNumeroImovel().equalsIgnoreCase(numero)) {
                 return destinatario;
             }
         }
