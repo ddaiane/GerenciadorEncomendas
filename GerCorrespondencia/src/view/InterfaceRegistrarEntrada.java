@@ -16,7 +16,7 @@ public class InterfaceRegistrarEntrada implements Comando {
 
     public void executar() {
         String quemRegistra = null;
-        String numeroImovel;
+        String nomeDestinatario = null;
         int tipo;
         Destinatario destinatario = null;
         boolean teste = true;
@@ -28,11 +28,9 @@ public class InterfaceRegistrarEntrada implements Comando {
 
         do {
             try {
-                numeroImovel = leDados("Informe o número do imóvel do destinatário");
-                destinatario = pesquisaDestinatario(numeroImovel);
-                if (destinatario != null) {
-                    teste = false;
-                }
+                nomeDestinatario = leDados("Informe o nome do destinatario da correspondencia");
+                destinatario = pesquisaNome(nomeDestinatario);
+                if(destinatario != null) {teste = false;}
             } catch (CampoVazioException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage() + " novamente");
             }
@@ -72,11 +70,11 @@ public class InterfaceRegistrarEntrada implements Comando {
     }
 
 
-    private Destinatario pesquisaDestinatario(String numero) {
+    private Destinatario pesquisaNome(String nome) {
         DestinatarioDAO dao = new DestinatarioDAO();
         Destinatario destinatario = null;
         try {
-            destinatario = dao.pesquisarPorNumero(numero);
+            destinatario = dao.pesquisarDestinatario(nome);
         } catch (DestinatarioInexistenteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
