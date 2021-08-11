@@ -3,6 +3,7 @@ package view;
 import controle.Comando;
 import controle.Processador;
 import exceptions.CampoVazioException;
+import exceptions.DestinatarioInexistenteException;
 import exceptions.DestinatarioJaCadastradoException;
 import model.Destinatario;
 import model.dao.DestinatarioDAO;
@@ -19,7 +20,7 @@ public class InterfaceInserirDestinatario implements Comando {
         do {
             try {
                 nome = leDados("Informe o Nome do novo destinatário");
-                teste = false;
+                teste = pesquisaNome(nome);
             } catch (CampoVazioException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage() + " novamente");
             }
@@ -40,6 +41,24 @@ public class InterfaceInserirDestinatario implements Comando {
         boolean salvo = salvaDestinatario(nome, numero);
         if (salvo) {JOptionPane.showMessageDialog(null, "Destinatario cadastrado com sucesso!");
         }
+    }
+
+    private boolean pesquisaNome(String nome) {
+        DestinatarioDAO dao = new DestinatarioDAO();
+        Destinatario destinatario = null;
+        try {
+            destinatario = dao.pesquisarDestinatario(nome);
+        } catch (DestinatarioInexistenteException e) {
+
+        }
+        if (destinatario == null) {
+            return false;
+        }
+        if (destinatario != null) {
+            JOptionPane.showMessageDialog(null, "Esse nome já pertence a um usuario");
+            return true;
+        }
+        return true;
     }
 
     private boolean salvaDestinatario(String nome, String numero) {
