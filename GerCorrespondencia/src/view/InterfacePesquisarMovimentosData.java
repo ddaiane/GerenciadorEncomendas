@@ -34,7 +34,7 @@ public class InterfacePesquisarMovimentosData implements Comando {
 
     private void mostraMovimentosPorData(String dataPesquisada) {
         MovimentoDAO dao = new MovimentoDAO();
-        List<Movimento> movimentos = dao.pesquisar(dataPesquisada);
+        List<Movimento> movimentos = dao.pesquisaData(dataPesquisada);
 
         StringBuilder todasMovimentacoes = new StringBuilder();
 

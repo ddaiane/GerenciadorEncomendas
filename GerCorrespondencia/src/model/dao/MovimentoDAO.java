@@ -1,11 +1,11 @@
 package model.dao;
 
-import model.Destinatario;
 import model.Movimento;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MovimentoDAO implements OperacoesDAO<Movimento> {
 
@@ -31,12 +31,28 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
         return bancoDeDados.getMovimentos();
     }
 
-    public List<Movimento> pesquisar(Destinatario destinatario) {
-        // TODO -> implementar
-        return null;
+    public List<Movimento> pesquisaQuemRetira(String destinatario) {
+        List<Movimento> movimentos = new ArrayList<>();
+        String destinatarioNormalizado = normalizaTexto(destinatario);
+
+        for(Movimento movimento : bancoDeDados.getMovimentos()) {
+            String movimentoQuemRetira = normalizaTexto(movimento.getQuemRetira());
+            if (movimentoQuemRetira.equals(destinatarioNormalizado)) {
+                movimentos.add(movimento);
+            }
+        }
+        return movimentos;
     }
 
-    public List<Movimento> pesquisar(String data) {
+    private String normalizaTexto(String texto) {
+        return Normalizer.normalize(texto, Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .replaceAll("\\s{2,}", " ")
+                .trim()
+                .toLowerCase(Locale.ROOT);
+    }
+
+    public List<Movimento> pesquisaData(String data) {
         List<Movimento> movimentos = new ArrayList<>();
         for(Movimento movimento : bancoDeDados.getMovimentos()) {
             if (movimento.getDataFormatada().equals(data)) {
@@ -46,6 +62,5 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
 
         return movimentos;
     }
-
 
 }
