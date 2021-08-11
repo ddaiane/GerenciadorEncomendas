@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Objects;
@@ -12,7 +13,7 @@ import java.util.Objects;
  */
 public class Movimento
 {
-    private Correspondencia correspondencia; //na correspondenca tem o destinatario!
+    private Correspondencia correspondencia; //na correspondencia tem o destinatário
     private String quemRegistra;
     private Calendar data;
     private String quemRetira; //Só para movimento de saída
@@ -45,6 +46,11 @@ public class Movimento
 
     public void setData(Calendar data) {
         this.data = data;
+    }
+
+    public String getDataFormatada() {
+        SimpleDateFormat df = new SimpleDateFormat( "dd/MM/yyyy");
+        return df.format(data.getTime());
     }
 
     public Correspondencia getCorrespondencia() {
