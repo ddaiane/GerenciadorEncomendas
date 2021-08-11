@@ -9,12 +9,8 @@ import model.*;
 import model.dao.DestinatarioDAO;
 import model.dao.MovimentoDAO;
 import model.dao.CorrespondenciaDAO;
-
-import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
-import javax.swing.*;
 
 public class InterfaceRegistrarSaida implements Comando {
 

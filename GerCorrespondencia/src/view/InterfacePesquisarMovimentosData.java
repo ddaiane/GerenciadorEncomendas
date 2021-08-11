@@ -1,6 +1,7 @@
 package view;
 
 import controle.Comando;
+import controle.Processador;
 import model.Movimento;
 import model.dao.MovimentoDAO;
 
@@ -28,6 +29,10 @@ public class InterfacePesquisarMovimentosData implements Comando {
 
     private String leData() throws ParseException{
         String dataPesquisada = JOptionPane.showInputDialog(null, "Digite a Data: ","dd/MM/aaaa");
+        if (dataPesquisada == null) { //trata a saida se usuario pressionar cancela
+            Processador.direcionar("0");
+            return null;
+        }
         new SimpleDateFormat("dd/MM/yyyy").parse(dataPesquisada);
         return dataPesquisada;
     }

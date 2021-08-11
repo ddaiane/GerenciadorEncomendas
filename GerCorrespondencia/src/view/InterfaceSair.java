@@ -5,6 +5,7 @@
 package view;
 
 import controle.Comando;
+import controle.Processador;
 
 import javax.swing.*;
 
@@ -26,6 +27,7 @@ public class InterfaceSair implements Comando {
             System.exit(0);
         } else if (n == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(null, "Então escolha outra opção...");
+            Processador.direcionar("0");
         }
     }
 }

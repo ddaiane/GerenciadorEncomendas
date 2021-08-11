@@ -18,8 +18,8 @@ public class InterfacePrincipal implements Comando{
 
     public void executar() {
         String opcao = null;
+        int controle;
         do {
-            try{
                 opcao = leDados("Escolha a opcao:"
                         + "\n1 - Sair"
                         + "\n2 - Registrar Movimento de Entrada de Correspondencia"
@@ -33,18 +33,40 @@ public class InterfacePrincipal implements Comando{
                         + "\n10 - Excluir um Determinado Destinatario");
 
                 Processador.direcionar(opcao);
-            } catch(CampoVazioException cve){
-                JOptionPane.showMessageDialog(null,cve.getMessage() + " Digite novamente");
-            }
-        } while (opcao==null || !opcao.equals("0"));
+
+        } while (!opcao.equals("0"));
     }
-    
-    public static String leDados(String mensagem) throws CampoVazioException {
-        String opcao = JOptionPane.showInputDialog(null,mensagem);
-        if (opcao.contains(" ") || opcao.length()==0) {
-            throw new CampoVazioException("Campo Vazio!");
+
+    public String leDados(String mensagem) {
+        String opcao = JOptionPane.showInputDialog(null, mensagem);
+        String saida = processaSelecao(opcao);
+        return saida;
+    }
+
+    private String processaSelecao(String opcao) {
+        if (opcao == null) { //trata a saida se usuario pressionar cancela
+            Processador.direcionar("1");
+            return null;
         }
-        else {
+        opcao = opcao.replaceAll("\\s{2,}", " ").trim();
+
+        if (opcao.length() == 0) { //trata se pressionar ok com a caixa vazia
+            JOptionPane.showMessageDialog(null, "Escolha uma opção válida");
+            Processador.direcionar("0");
+            return null;
+        }
+        if (!opcao.matches("[0-9]*")) { //trata se digitar algo que nao for numero
+            JOptionPane.showMessageDialog(null, "Escolha uma opção válida");
+            Processador.direcionar("0");
+            return null;
+        }
+
+        int controle = Integer.parseInt(opcao);
+        if (controle < 1 || controle > 10) { //trata se digitar numeros diferentes das opcoes
+            JOptionPane.showMessageDialog(null, "Escolha uma opção válida");
+            Processador.direcionar("0");
+            return null;
+        } else  {
             return opcao;
         }
     }
