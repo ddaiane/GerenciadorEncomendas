@@ -32,7 +32,7 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
         return bancoDeDados.getMovimentos();
     }
 
-    public List<Movimento> pesquisaQuemRetira(String destinatario) {
+    public List<Movimento> pesquisaDestinatario(String destinatario) {
         List<Movimento> movimentos = new ArrayList<>();
         String destinatarioNormalizado = normalizaTexto(destinatario);
 

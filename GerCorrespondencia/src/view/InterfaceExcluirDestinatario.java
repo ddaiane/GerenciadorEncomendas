@@ -49,7 +49,7 @@ public class InterfaceExcluirDestinatario implements Comando {
 
     private void excluiMovimentacoes(Destinatario destinatario) {
         MovimentoDAO dao = new MovimentoDAO();
-        List<Movimento> lista = dao.pesquisaQuemRetira(destinatario.getNome());
+        List<Movimento> lista = dao.pesquisaDestinatario(destinatario.getNome());
 
         for(Movimento movimento : lista) {
             dao.excluir(movimento);
