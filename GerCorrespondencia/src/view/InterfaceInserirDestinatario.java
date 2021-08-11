@@ -81,7 +81,7 @@ public class InterfaceInserirDestinatario implements Comando {
             Processador.direcionar("0");
             return null;
         }
-        opcao = opcao.replaceAll("\\s{2,}", " ").trim().toLowerCase();
+        opcao = opcao.replaceAll("\\s{2,}", " ").trim();
         if (opcao.length() == 0) {
             throw new CampoVazioException(mensagem);
         } else {
