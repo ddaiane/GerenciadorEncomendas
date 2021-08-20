@@ -6,6 +6,12 @@ import model.Movimento;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author (Mateus Vagner)
+ * Implementa um "banco de dados" no padrão singleton com persistência de dados em memória durante a execução
+ */
+
 class BancoDeDados {
     private final ArrayList<Correspondencia> correspondencias;
     private final ArrayList<Destinatario> destinatarios;
@@ -13,7 +19,7 @@ class BancoDeDados {
 
     private static BancoDeDados instance = null;
 
-    // private constructor restricted to this class itself
+    // construtor restrito
     private BancoDeDados()
     {
         correspondencias = new ArrayList<>();

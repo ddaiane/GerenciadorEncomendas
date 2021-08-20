@@ -21,14 +21,14 @@ public class CorrespondenciaDAO implements OperacoesDAO<Correspondencia> {
     }
 
     @Override
-    public void editar(Correspondencia newObj) {
-
-    }
+    public void editar(Correspondencia newObj) {}
 
     @Override
     public List<Correspondencia> pesquisar() {
         return null;
     }
+
+
 
     public List<Correspondencia> pesquisarNaoRetiradas(Destinatario destinatario) {
         List<Correspondencia> correspondenciasNaoRetiradas = new ArrayList<>();
@@ -39,7 +39,6 @@ public class CorrespondenciaDAO implements OperacoesDAO<Correspondencia> {
                 correspondenciasNaoRetiradas.add(correspondencia);
             }
         }
-
         return correspondenciasNaoRetiradas;
     }
 

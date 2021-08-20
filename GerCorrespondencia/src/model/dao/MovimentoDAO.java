@@ -32,6 +32,7 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
     }
 
 
+    //pesquisa e retorna uma lista com todas movimentaçoes de um determinado morador
     public List<Movimento> pesquisaDestinatario(Destinatario destinatario) {
         List<Movimento> movimentos = new ArrayList<>();
         if (destinatario == null) {
@@ -46,6 +47,7 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
         return movimentos;
     }
 
+
     private String normalizaTexto(String texto) {
         return Normalizer.normalize(texto, Normalizer.Form.NFD)
                 .replaceAll("\\p{M}", "")
@@ -54,6 +56,7 @@ public class MovimentoDAO implements OperacoesDAO<Movimento> {
                 .toLowerCase(Locale.ROOT);
     }
 
+    //pesquisa as movimentacoes por data
     public List<Movimento> pesquisaData(String data) {
         List<Movimento> movimentos = new ArrayList<>();
         for(Movimento movimento : bancoDeDados.getMovimentos()) {

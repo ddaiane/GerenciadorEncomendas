@@ -10,6 +10,7 @@ public class DestinatarioDAO implements OperacoesDAO<Destinatario> {
 
     private final BancoDeDados bancoDeDados = BancoDeDados.getInstance();
 
+
     @Override
     public void inserir(Destinatario obj) {
        bancoDeDados.getDestinatarios().add(obj);
@@ -21,26 +22,21 @@ public class DestinatarioDAO implements OperacoesDAO<Destinatario> {
     }
 
     @Override
-    public void editar(Destinatario newObj) {
-
-    }
+    public void editar(Destinatario newObj) {}
 
     @Override
-    public List<Destinatario> pesquisar() {
-        return null;
-    }
+    public List<Destinatario> pesquisar() {return null;}
 
+    //pesquisa se destinatario existe cadastrado
     public boolean pesquisarCadastro(Destinatario destinatario) throws DestinatarioJaCadastradoException {
         for(Destinatario cadastro : bancoDeDados.getDestinatarios()) {
             if(cadastro.equals(destinatario)) {
                 throw new DestinatarioJaCadastradoException();
-
             }
-
-
     } return true;
     }
 
+    //procura o destinatário no banco de dados pelo nome
     public Destinatario pesquisarDestinatario(String nome) throws DestinatarioInexistenteException {
         for(Destinatario destinatario : bancoDeDados.getDestinatarios()) {
             if(destinatario.getNome().equalsIgnoreCase(nome)) {
@@ -50,6 +46,8 @@ public class DestinatarioDAO implements OperacoesDAO<Destinatario> {
         throw new DestinatarioInexistenteException();
     }
 
+
+    //procura o destinatário no banco de dados pelo numero do apartamento
     public Destinatario pesquisarPorNumero(String numero) throws DestinatarioInexistenteException {
         for(Destinatario destinatario : bancoDeDados.getDestinatarios()) {
             if(destinatario.getNumeroImovel().equalsIgnoreCase(numero)) {
@@ -58,5 +56,4 @@ public class DestinatarioDAO implements OperacoesDAO<Destinatario> {
         }
         throw new DestinatarioInexistenteException();
     }
-
 }
