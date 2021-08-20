@@ -1,5 +1,6 @@
 package exceptions;
 
+
 public class DestinatarioInexistenteException extends Exception {
 
     public DestinatarioInexistenteException() {

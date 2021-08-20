@@ -6,11 +6,11 @@ import java.util.GregorianCalendar;
 import java.util.Objects;
 
 /**
- * Write a description of class model.Movimento here.
  *
  * @author (Caroline Scherer, Daiane Marcon, Mateus Vagner)
- * @version (1.0)
+ *
  */
+
 public class Movimento
 {
     private Correspondencia correspondencia; //na correspondencia tem o destinatário
@@ -18,7 +18,7 @@ public class Movimento
     private Calendar data;
     private String quemRetira; //Só para movimento de saída
 
-    //model.Movimento de recebimento da correspondencia pela portaria
+    //model.Movimento de recebimento da correspondencia pela portaria - Entrada
     public Movimento(Correspondencia correspondencia, String quemRegistra) {
             this.setCorrespondencia(correspondencia);
             this.setQuemRegistra(quemRegistra);
@@ -26,7 +26,7 @@ public class Movimento
 
     }
 
-    //model.Movimento de entrega da correspondencia para o destinatário
+    //model.Movimento de entrega da correspondencia para o destinatário - Saída
     public Movimento(Correspondencia correspondencia, String quemRetira, String quemRegistra) {
         this.setCorrespondencia(correspondencia);
         correspondencia.setStatus(true);

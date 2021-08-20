@@ -3,19 +3,18 @@ package model;
 import java.util.Objects;
 
 /**
- * Write a description of class model.Pacote here.
  *
  * @author (Caroline Scherer, Daiane Marcon, Mateus Vagner)
- * @version (1.0)
+ *
  */
+
 public class Pacote extends Correspondencia
 {
-    // instance variables - replace the example below with your own
     private String empresa;
 
 
     /**
-     * Constructor for objects of class model.Pacote
+     * Construtor
      */
     public Pacote(Destinatario destino, String empresa)
     {

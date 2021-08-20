@@ -3,12 +3,11 @@ package model;
 import java.util.Objects;
 
 /**
- * Write a description of class model.Correspondencia here.
- * 
+ *
  * @author (Caroline Scherer, Daiane Marcon, Mateus Vagner)
- * @version (1.0)
+ *
  */
-public class Correspondencia //Generalização ou classe mãe
+public class Correspondencia //Generalização ou classe mãe de carta e pacote
 {
     private Destinatario destino;
     private boolean status; //TRUE é porque já foi retirado
@@ -19,6 +18,7 @@ public class Correspondencia //Generalização ou classe mãe
     public Correspondencia (Destinatario destino){
         this.setDestino(destino);
         this.id = currentValue.getNextValue(); //puxa o numero de id do contador da classe Id
+        this.status = false;
         // por default status é inicializado com false.
     }    
      

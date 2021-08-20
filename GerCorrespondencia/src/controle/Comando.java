@@ -4,10 +4,6 @@
  */
 package controle;
 
-/**
- *
- * @author Karen
- */
 public interface Comando {
     
     public void executar();

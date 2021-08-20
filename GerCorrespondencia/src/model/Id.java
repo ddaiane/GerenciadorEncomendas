@@ -1,6 +1,11 @@
 package model;
 
-//classe pra ir gerando os numeros para a id de cada correspondencia
+
+/**
+ * Classe padrão singleton geradora de id
+ * @author (Daiane Marcon)
+ *
+ */
 public class Id {
     private int currentValue = 1;
     private static Id instance = null;
@@ -19,6 +24,6 @@ public class Id {
 
     public int getNextValue() {
         return currentValue++;
-    }
+    } //função que retorna e autoincrementa os ids
 
 }

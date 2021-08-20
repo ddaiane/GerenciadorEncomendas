@@ -6,10 +6,7 @@ package controle;
 
 import java.util.HashMap;
 
-/**
- *
- * @author KAREN
- */
+
 public class Processador {
 
     private static final HashMap comandos = new HashMap();

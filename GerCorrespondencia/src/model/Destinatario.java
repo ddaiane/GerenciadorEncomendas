@@ -4,11 +4,11 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Write a description of class model.Destinatario here.
  *
  * @author (Caroline Scherer, Daiane Marcon, Mateus Vagner)
- * @version (1.0)
+ *
  */
+
 public class Destinatario
 {
     private String nome; 

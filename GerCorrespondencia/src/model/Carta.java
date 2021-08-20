@@ -3,12 +3,11 @@ package model;
 import java.util.Objects;
 
 /**
- * Write a description of class model.Carta here.
- * 
  *
  * @author (Caroline Scherer, Daiane Marcon, Mateus Vagner)
- * @version (1.0)
+ *
  */
+
 public class Carta extends Correspondencia
 {
     private boolean recibo; //Se TRUE é porque tinha recibo
