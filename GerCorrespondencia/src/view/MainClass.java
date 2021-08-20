@@ -5,6 +5,6 @@ import controle.Processador;
 public class MainClass {
 
     public static void main(String[] args) {
-        Processador.direcionar("0");
+        Processador.direcionar("0"); //direciona para interface principals
     }
 }

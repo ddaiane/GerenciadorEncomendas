@@ -10,10 +10,7 @@ import exceptions.CampoVazioException;
 
 import javax.swing.*;
 
-/**
- *
- * @author Karen
- */
+
 public class InterfacePrincipal implements Comando{
 
     public void executar() {
@@ -24,11 +21,11 @@ public class InterfacePrincipal implements Comando{
                         + "\n1 - Sair"
                         + "\n2 - Registrar Movimento de Entrada de Correspondencia"
                         + "\n3 - Registrar Movimento de Saida de Correspondencia"
-                        + "\n4 - Pesquisar Se Existem Correspondencias para Serem Entregues para um Determinado Destinatario"
+                        + "\n4 - Pesquisar Se Existem Correspondencias a Serem Entregues para um Determinado Destinatario"
                         + "\n5 - Listar todos os Movimentos de um Determinado Destinatario"
                         + "\n6 - Listar todos os Movimentos de uma Determinada Data"
                         + "\n7 - Listar todos os Movimentos Registrados no Sistema"
-                        + "\n8 - Cadastrar um Destinatario"
+                        + "\n8 - Cadastrar Destinatario"
                         + "\n9 - Pesquisar Dados de um Determinado Destinatario"
                         + "\n10 - Excluir um Determinado Destinatario");
 
@@ -43,6 +40,8 @@ public class InterfacePrincipal implements Comando{
         return saida;
     }
 
+
+    //verificacoes para evitar erros
     private String processaSelecao(String opcao) {
         if (opcao == null) { //trata a saida se usuario pressionar cancela
             Processador.direcionar("1");

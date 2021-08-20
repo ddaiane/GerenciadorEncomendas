@@ -45,6 +45,7 @@ public class InterfacePesquisarCorrespondencia implements Comando{
         }
     }
 
+    //constroi string para saida
     private String pegaStringCorrespondencias(List<Correspondencia> naoRetiradas) {
         StringBuilder correspondencias = new StringBuilder();
 

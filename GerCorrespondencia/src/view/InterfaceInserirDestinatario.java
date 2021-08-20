@@ -20,7 +20,7 @@ public class InterfaceInserirDestinatario implements Comando {
         do {
             try {
                 nome = leDados("Informe o Nome do novo destinatário");
-                teste = pesquisaNome(nome);
+                teste = pesquisaNome(nome); //confere se nome do usuario ainda nao foi cadastrado
             } catch (CampoVazioException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage() + " novamente");
             }
