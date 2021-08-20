@@ -1,4 +1,4 @@
-# Gerenciador de encomendas e correspondências
+# Gerenciador de encomendas e correspondências _(versão 0.2)_
 
 **Desenvolvido por:** Daiane Marcon, [Mateus Vagner](https://github.com/mateusvagner) e [Caroline Scherer](https://github.com/carolineschererr)
 
@@ -12,6 +12,7 @@ Com o sistema é possível:
 - pesquisar todas correspondências e encomendas a serem entregues para um determinado morador,
 - listar todas movimentações de entrada e saída de um determinado dia e todas movimentações existentes no sistema.
 
+Na atual versão não está implementado um banco de dados, tendo persistencia de dados apenas em memória durante a execução da aplicação.
 
 _Aplicação Java desenvolvida como projeto final na disciplina de Linguagem de Programação II no curso superior de Tecnologia em Sistemas para Internet do IFRS-Poa_
 
