@@ -14,7 +14,7 @@ Com o sistema é possível:
 
 Na atual versão não está implementado um banco de dados, tendo persistencia de dados apenas em memória durante a execução da aplicação.
 
-Há uma pasta "jar" com o arquivo jar do projeto e [clicando aqui](./setup_gerenciador_encomendas.exe) existe um setup para instalar a aplicação.
+Há uma pasta "jar" com o arquivo jar do projeto e [clicando aqui](./setup_gerenciador_encomendas.exe) existe um setup para instalar a aplicação. Para executar o programa é necessário ter instalado o java 16, disponível [aqui](https://www.oracle.com/java/technologies/javase-jdk16-downloads.html).
 
 _Aplicação Java desenvolvida como projeto final na disciplina de Linguagem de Programação II no curso superior de Tecnologia em Sistemas para Internet do IFRS-Poa_
 
