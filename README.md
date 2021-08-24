@@ -14,6 +14,8 @@ Com o sistema é possível:
 
 Na atual versão não está implementado um banco de dados, tendo persistencia de dados apenas em memória durante a execução da aplicação.
 
+Há uma pasta "jar" com o arquivo jar do projeto e [clicando aqui](./setup_gerenciador_encomendas.exe) existe um setup para instalar a aplicação.
+
 _Aplicação Java desenvolvida como projeto final na disciplina de Linguagem de Programação II no curso superior de Tecnologia em Sistemas para Internet do IFRS-Poa_
 
 
