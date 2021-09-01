@@ -1,6 +1,6 @@
 # Gerenciador de encomendas e correspondências _(versão 0.2)_
 
-**Desenvolvido por:** [Daiane Marcon] (https://github.com/ddaiane), [Mateus Vagner](https://github.com/mateusvagner) e [Caroline Scherer](https://github.com/carolineschererr)
+**Desenvolvido por:** [Daiane Marcon](https://github.com/ddaiane), [Mateus Vagner](https://github.com/mateusvagner) e [Caroline Scherer](https://github.com/carolineschererr)
 
 Aplicação que implementa um sistema para controle de recebimento e entrega de correspondências e encomendas para a portaria de um condomínio.
 Com o sistema é possível:
